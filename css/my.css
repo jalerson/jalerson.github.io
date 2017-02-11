@@ -40,3 +40,10 @@ ul.social li {
   display: inline-block;
   margin-right: 40px;
 }
+
+div.item img {
+  width: auto !important;
+  height: 550px !important;
+  max-height: 550px !important;
+  margin: 0 auto;
+}
