@@ -1,6 +1,10 @@
 body {
-  padding-top: 70px;
-  position: relative;
+  padding-top: 5em;
+  min-width: 100%;
+}
+
+.container {
+  min-width: 100%;
 }
 
 p {
@@ -12,38 +16,29 @@ p {
 }
 
 h1 {
-  margin-bottom: 20px;
-  margin-top: 20px;
+  font-weight: bold;
 }
 
 h2 {
-  font-size: 22px;
-}
-
-h1.name {
-  font-size: 50px;
-  font-weight: bold;
+  margin-bottom: 0.3em;
 }
 
 div.jumbotron {
   box-shadow: 1px 1px 1px #888888;
 }
 
+.img-responsive {
+  margin: 0 auto;
+}
+
 ul.social {
   margin-bottom: 0px;
   padding: 0;
-  font-size: 30px;
+  font-size: 2em;
   list-style: none outside;
 }
 
 ul.social li {
   display: inline-block;
-  margin-right: 40px;
-}
-
-div.item img {
-  width: auto !important;
-  height: 550px !important;
-  max-height: 550px !important;
-  margin: 0 auto;
+  margin-right: 1.5em;
 }
