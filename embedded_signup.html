@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Embedded Signup Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #128C7E;
+            text-align: center;
+        }
+        
+        .container {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            background-color: #128C7E;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            background-color: #075E54;
+        }
+        
+        #whatsapp-embedded-signup {
+            margin: 20px 0;
+            min-height: 300px;
+        }
+        
+        .status-message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <h1>WhatsApp Embedded Signup Demo</h1>
+    
+    <div class="container">
+        <h2>Connect on WhatsApp</h2>
+
+        <button onclick="launchWhatsAppSignup()" style="background-color: #1877f2; border: 0; border-radius: 4px; color: #fff; cursor: pointer; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: bold; height: 40px; padding: 0 24px;">Login with Facebook</button>
+    </div>
+    
+    <!-- Meta SDK -->
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+    
+    <script>
+        // SDK initialization
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId: '673959798388665', // your app ID goes here
+            autoLogAppEvents: true,
+            xfbml: true,
+            version: 'v22.0' // Graph API version goes here
+          });
+        };
+        
+        // Session logging message event listener
+        window.addEventListener('message', (event) => {
+          if (event.origin !== "https://www.facebook.com" && event.origin !== "https://web.facebook.com") return;
+          try {
+            const data = JSON.parse(event.data);
+            if (data.type === 'WA_EMBEDDED_SIGNUP') {
+              console.log('message event: ', data); // remove after testing
+              // your code goes here
+            }
+          } catch {
+            console.log('message event: ', event.data); // remove after testing
+            // your code goes here
+          }
+        });
+        
+        // Response callback
+        const fbLoginCallback = (response) => {
+          if (response.authResponse) {
+            const code = response.authResponse.code;
+            console.log('response: ', code); // remove after testing
+            // your code goes here
+          } else {
+            console.log('response: ', response); // remove after testing
+            // your code goes here
+          }
+        }
+        
+        // Launch method and callback registration
+        const launchWhatsAppSignup = () => {
+          FB.login(fbLoginCallback, {
+            config_id: '2077666122733211', // your configuration ID goes here
+            response_type: 'code',
+            override_default_response_type: true,
+            extras: {
+              setup: {},
+              featureType: '',
+              sessionInfoVersion: '3',
+            }
+          });
+        }
+    </script>
+</body>
+</html>
